@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: Arial, Helvetica, sans-serif;   
+}
+
+.calculate-head{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 200;
+}
+
+.usage-text{
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    color: blue;
+}
+
+.labels{
+    font-weight: lighter;
+    font-size: 16;
+    font-family: 'Times New Roman', Times, serif;
+}

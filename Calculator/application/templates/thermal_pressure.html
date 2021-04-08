@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "nav.html" %}
+
+<div class="container mx-auto my-4">
+
+    <div class="text-center">
+        <h4 class="calculate-head">Thermal Pressure</h4>
+    </div>
+</div>
+<div class="container">
+    <div class="usage-text">
+        <p class="lead">Usage:</p>
+        <hr>
+        <p><span class="signature">thermal_pressure(T, n)</span>, where <br>
+            <span class="req-param">T</span> - The particle temperature in either kelvin or energy per particle <br>
+            <span class="req-param">particle</span> - Particle number density in units convertible to m^(-3) <br>
+            <br>
+            returns <span class="signature">p_th</span> – The thermal pressure for a Maxwellian distribution
+        </p>
+
+    </div>
+</div>
+<div class="py-5 container mx-auto text-center">
+    <form id="calc-form" class="align-items-center" action="/thermal_pressure" method="POST">
+        <div class="p-1 form-group row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <label class="labels" for="temp">Temperature:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="Kelvin" class="form-control" name="temp" />
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <select class="form-control" name="unitsT">
+                    <option value="select">Unit (T)</option>
+                    <option value="K">K</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="p-1 form-group row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <label class="labels" for="density">Density:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="1/m^3" class="form-control" name="density" />
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <select class="form-control" name="unitsN">
+                    <option value="select">Unit (n)</option>
+                    <option value="m ** -3">1 / m^3</option>
+                    <option value="m / s">m / s</option>
+                    <option value="km / h">km / h</option>
+                </select>
+            </div>
+        </div>
+        <div class="py-2">
+            <input type="submit" value="Calculate" id="calc_btn" class="btn btn-success" />
+            <input type="reset" value="Reset" id="reset_btn" class="btn btn-secondary" />
+            <br />
+            <div class="alert">
+                {{ sum }}
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

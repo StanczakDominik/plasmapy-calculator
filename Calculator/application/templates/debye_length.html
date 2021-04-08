@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "nav.html" %}
+
+<div class="container mx-auto my-4">
+
+    <div class="text-center">
+        <h4 class="calculate-head">Debye Length</h4>
+    </div>
+</div>
+<div class="container">
+    <div class="usage-text">
+        <p class="lead">Usage:</p>
+        <hr>
+        <p> <span class="signature">debye_length(T_e, n_e)</span>, where <br>
+            <span class="req-param">T_e</span> - Electron temperature <br>
+            <span class="req-param">n_e</span> - Electron number density <br>
+            <br>
+            returns <span class="req-param">lambda_D</span> – The Debye length in meters
+        </p>
+
+    </div>
+</div>
+<div class="py-5 container mx-auto text-center">
+    <form id="calc-form" class="align-items-center" action="/debye_length" method="POST">
+        <div class="p-1 form-group row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <label class="labels" for="temp">Temperature:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="Kelvin" class="form-control" name="temp" />
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <select class="form-control" name="unitsT">
+                    <option value="select">Unit (T)</option>
+                    <option value="K">K</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="p-1 form-group row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <label class="labels" for="density">Density:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="1/m^3" class="form-control" name="density" />
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <select class="form-control" name="unitsN">
+                    <option value="select">Unit (n)</option>
+                    <option value="m ** -3">1 / m^3</option>
+                </select>
+            </div>
+        </div>
+        <div class="py-2">
+            <input type="submit" value="Calculate" id="calc_btn" class="btn btn-success" />
+            <input type="reset" value="Reset" id="reset_btn" class="btn btn-secondary" />
+            <br />
+            <div class="alert">
+                {{ sum }}
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

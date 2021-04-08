@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "nav.html" %}
+
+<div class="container mx-auto my-4">
+
+    <div class="text-center">
+        <h4 class="calculate-head">Inertial Length</h4>
+    </div>
+</div>
+<div class="container">
+    <div class="usage-text">
+        <p class="lead">Usage:</p>
+        <hr>
+        <p><span class="signature">inertial_length(n, particle)</span>, where <br>
+            <span class="req-param">n</span> - Particle number density in units convertible to m^(-3) <br>
+            <span class="req-param">particle</span> - Representation of the particle species <br>
+            <br>
+            returns <span class="signature">d</span> – The particle’s inertial length in meters.
+        </p>
+
+    </div>
+</div>
+<div class="py-5 container mx-auto text-center">
+    <form id="calc-form" class="align-items-center" action="/inertial_length" method="POST">
+        <div class="p-1 form-group row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <label class="labels" for="n">n:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="1/m^3" class="form-control" name="n" />
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <select class="form-control" name="unitsN">
+                    <option value="select">Unit: </option>
+                    <option value="m ** -3">1/m^3</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="p-1 form-group row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <label class="labels" for="particle">Particle:</label>
+                    </div>
+                    <div class="ml-1 col">
+                        <select class="form-control" name="particle">
+                            <!-- <option value="select">Particle</option> -->
+                            <option value="p+">proton (p+)</option>
+                            <option value="e-">electron (e-)</option>
+                            <option value="neutron">neutron</option>
+                            <option value="D">deutron (D)</option>
+                            <option value="T+">triton (T+)</option>
+                            <option value="positron">positron</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+        <div class="py-2">
+            <input type="submit" value="Calculate" id="calc_btn" class="btn btn-success" />
+            <input type="reset" value="Reset" id="reset_btn" class="btn btn-secondary" />
+            <br />
+            <div class="alert">
+                {{ sum }}
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

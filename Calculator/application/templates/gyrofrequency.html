@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "nav.html" %}
+
+<div class="container mx-auto my-4">
+
+    <div class="text-center">
+        <h4 class="calculate-head">Gyrofrequency</h4>
+    </div>
+</div>
+<div class="container">
+    <div class="usage-text">
+        <p class="lead">Usage:</p>
+        <hr>
+        <p><span class="signature"> gyrofrequency(B, particle[, signed, Z, to_hz])</span>, where <br>
+            <span class="req-param">B</span>: The magnetic field magnitude in units convertible to tesla <br>
+            <span class="req-param">particle</span>: ‘p’ for protons, ‘D+’ for deuterium, or ‘He-4 +1’ for singly
+            ionized helium-4, etc. <br>
+            <span class="opt-param">signed</span>: optional, negative for electron, positive for ion. Unsigned(false)
+            means positive<br>
+            <span class="opt-param">Z</span>: optional, The average ionization (arithmetic mean) for a plasma where the
+            a macroscopic description is
+            valid<br>
+            <span class="opt-param">to_hz</span>: Set True to to convert function output from angular frequency to
+            Hz<br>
+            <br>
+            returns <span class="signature">omega_c</span> – The particle gyrofrequency in units of radians per second
+        </p>
+
+    </div>
+</div>
+<div class="py-5 container mx-auto text-center">
+    <form id="calc-form" class="align-items-center" action="/gyrofrequency" method="POST">
+        <div class="p-1 form-group row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="labels" for="mf_mag">B:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="Mag. field" class="form-control" name="mf_mag" />
+                    </div>
+                    <div class="col">
+                        <select class="form-control" name="unitsB">
+                            <option value="select">Unit:</option>
+                            <option value="T">T</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="labels" for="z">Z:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="Avg Ionizaion" class="form-control" name="z" />
+                    </div>
+                    <div class="col">
+                        <select class="form-control" name="unitsZ">
+                            <option value="select">Unit:</option>
+                            <option value="kg">kg</option>
+                            <option value="g">gram</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-1 form-group row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="labels" for="particle">Particle:</label>
+                    </div>
+                    <div class="ml-1 col">
+                        <select class="form-control" name="particle">
+                            <!-- <option value="select">Particle</option> -->
+                            <option value="p+">proton (p+)</option>
+                            <option value="e-">electron (e-)</option>
+                            <option value="neutron">neutron</option>
+                            <option value="D">deutron (D)</option>
+                            <option value="T+">triton (T+)</option>
+                            <option value="positron">positron</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="labels" for="signed">Signed:</label>
+                    </div>
+                    <div class="ml-1">
+                        <select class="form-control" name="signed">
+                            <option value="false">false</option>
+                            <option value="true">true</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-1 form-group row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="labels" for="to_hz">to_hz:</label>
+                    </div>
+                    <div class="col">
+                        <select class="form-control" name="to_hz">
+                            <option value="false">false</option>
+                            <option value="true">true</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+        <div class="py-2">
+            <input type="submit" value="Calculate" id="calc_btn" class="btn btn-success" />
+            <input type="reset" value="Reset" id="reset_btn" class="btn btn-secondary" />
+            <br />
+            <div class="alert">
+                {{ sum }}
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
